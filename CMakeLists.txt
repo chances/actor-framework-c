@@ -4,6 +4,7 @@ project(caf C CXX)
 # -- project options -----------------------------------------------------------
 
 option(BUILD_SHARED_LIBS "Build all modules as shared library" ON)
+option(BUILD_C_BINDINGS  "Build C bindings for Core and IO modules" ON)
 
 # -- includes ------------------------------------------------------------------
 
@@ -503,6 +504,14 @@ include_directories("${CMAKE_BINARY_DIR}"
                     "${CMAKE_CURRENT_SOURCE_DIR}/libcaf_io"
                     "${CMAKE_CURRENT_SOURCE_DIR}/libcaf_test"
                     "${CMAKE_CURRENT_SOURCE_DIR}/libcaf_openssl")
+
+################################################################################
+#                             generate c bindings                              #
+################################################################################
+
+if(BUILD_C_BINDINGS)
+  add_subdirectory("libcaf_core_c")
+endif()
 
 ################################################################################
 #                                 add targets                                  #
